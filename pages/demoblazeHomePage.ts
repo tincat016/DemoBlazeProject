@@ -146,7 +146,9 @@ export class DemoblazeHomePage {
     //Cart Validation 
     async table_Cart_Validation() {
         await this.page.locator(this.cart_Button).click();
-        const first_Table = await this.page.locator(this.cart_first_table_Validation).innerText();
+        await expect(this.page.locator(this.cart_first_table_Validation)).toBeVisible({ timeout: 10000 });
+        const first_Table = await this.page.locator(this.cart_first_table_Validation).textContent();
+
     
         expect.soft(first_Table).toBe('Nokia lumia 1520');
         console.log("The product 1 Table Actual is:", first_Table);
