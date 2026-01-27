@@ -13,5 +13,5 @@
     //     await loginPage.navigate("https://demo.applitools.com/");
     //     await basePage.textContent_Validation();
     //     await basePage.closeBrowser();
-            
+           
     // });
