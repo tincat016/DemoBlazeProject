@@ -145,15 +145,24 @@ export class DemoblazeHomePage {
 
     //Cart Validation 
     async table_Cart_Validation() {
-        await this.page.locator(this.cart_Button).click();
-        const first_Table = await this.page.locator(this.cart_first_table_Validation).textContent();
-        expect.soft(first_Table).toBe('Nokia lumia 1520');
-        console.log("The product 1 Table Actual is:", first_Table);
+  await this.page.locator(this.cart_Button).click();
 
-        const second_Table = await this.page.locator(this.cartr_second_table_Validation).textContent();
-        expect.soft(second_Table).toBe('Sony vaio i5');
-        console.log("The Second Product:", second_Table);
-    }
+  const first_Table = await this.page
+    .locator(this.cart_first_table_Validation)
+    .first()
+    .textContent();
+
+  expect.soft(first_Table?.trim()).toBe('Nokia lumia 1520');
+  console.log("The product 1 Table Actual is:", first_Table);
+
+  const second_Table = await this.page
+    .locator(this.cartr_second_table_Validation)
+    .textContent();
+
+  expect.soft(second_Table?.trim()).toBe('Sony vaio i5');
+  console.log("The Second Product:", second_Table);
+}
+
 
     async Total_Outcome() {
         const total_Output = await this.page.locator(this.total_outCome).textContent();
