@@ -146,8 +146,12 @@ export class DemoblazeHomePage {
     //Cart Validation 
     async table_Cart_Validation() {
         await this.page.locator(this.cart_Button).click();
-        await expect(this.page.locator(this.cart_first_table_Validation)).toBeVisible({ timeout: 10000 });
-        const first_Table = await this.page.locator(this.cart_first_table_Validation).textContent();
+        const cartItem = this.page.locator(this.cart_first_table_Validation).first();
+
+        await expect(cartItem).toBeVisible({ timeout: 10000 });
+        const first_Table = await cartItem.innerText();
+        expect.soft(first_Table).toBe("Nokia lumia 1520");
+
 
     
         expect.soft(first_Table).toBe('Nokia lumia 1520');
